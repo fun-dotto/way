@@ -1,0 +1,14 @@
+.claude/
+.git/
+.github/
+.serena/
+
+.dockerignore
+.env*
+.gitignore
+.mcp.json
+CLAUDE.md
+Dockerfile
+mise.toml
+README.md
+Taskfile.yml
