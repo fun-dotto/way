@@ -1,0 +1,52 @@
+version: "3"
+
+vars:
+  GO: go
+
+tasks:
+  install:
+    desc: Install dependencies
+    cmds:
+      - "{{.GO}} mod tidy"
+
+  generate:
+    desc: Generate API code from OpenAPI spec
+    cmds:
+      - rm -rf ./generated
+      - mkdir -p ./generated
+      - "{{.GO}} tool oapi-codegen -config ./openapi/config.yaml ./openapi/openapi.yaml"
+
+  clean:
+    desc: Clean build artifacts
+    cmds:
+      - rm -rf ./bin
+
+  build:
+    desc: Build the application
+    deps:
+      - clean
+    cmds:
+      - mkdir -p ./bin
+      - "{{.GO}} build -tags timetzdata -o ./bin/main ./cmd/server/main.go"
+
+  run:
+    desc: Run the application
+    cmds:
+      - "{{.GO}} run ./cmd/server/main.go"
+
+  build-and-run:
+    desc: Build and run the application
+    deps:
+      - build
+    cmds:
+      - ./bin/main
+
+  test:
+    desc: Run tests
+    cmds:
+      - "{{.GO}} test -v ./..."
+
+  default:
+    desc: Show available tasks
+    cmds:
+      - task --list
