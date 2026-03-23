@@ -1,0 +1,49 @@
+name: Set Environment
+description: Set environment, service name, and image tag based on trigger context
+outputs:
+  environment:
+    description: Target environment (e.g. stg, prod)
+    value: ${{ steps.set-env.outputs.environment }}
+  service_name:
+    description: Cloud Run service name
+    value: ${{ steps.set-env.outputs.service_name }}
+  image_tag:
+    description: Docker image tag
+    value: ${{ steps.set-env.outputs.image_tag }}
+runs:
+  using: composite
+  steps:
+    - id: set-env
+      shell: bash
+      run: |
+        # Environment
+        IS_WORKFLOW_DISPATCH="${{ github.event_name == 'workflow_dispatch' && github.event.inputs.environment_name != '' }}"
+        IS_PUSH_TO_MAIN="${{ github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.base_ref == 'main') }}"
+        if [ $IS_WORKFLOW_DISPATCH = "true" ]; then
+          export TARGET_ENVIRONMENT="${{ github.event.inputs.environment_name }}"
+        elif [ $IS_PUSH_TO_MAIN = "true" ]; then
+          export TARGET_ENVIRONMENT="stg"
+        else
+          exit 1
+        fi
+
+        echo "Environment: $TARGET_ENVIRONMENT"
+
+        # Service name suffix
+        if [ "$TARGET_ENVIRONMENT" = "prod" ]; then
+          export SERVICE_NAME_SUFFIX=""
+        else
+          export SERVICE_NAME_SUFFIX="-$TARGET_ENVIRONMENT"
+        fi
+
+        export REPO_NAME=$(echo ${{ github.repository }} | awk -F '/' '{print $2}')
+        export SERVICE_NAME=$REPO_NAME$SERVICE_NAME_SUFFIX
+        export IMAGE_TAG=${{ vars._AR_HOSTNAME }}/${{ vars.PROJECT_ID }}/github-actions/$REPO_NAME/$SERVICE_NAME:${{ github.sha }}
+
+        echo "Repository name: $REPO_NAME"
+        echo "Service name: $SERVICE_NAME"
+        echo "Image tag: $IMAGE_TAG"
+
+        echo "environment=$TARGET_ENVIRONMENT" >> "$GITHUB_OUTPUT"
+        echo "service_name=$SERVICE_NAME" >> "$GITHUB_OUTPUT"
+        echo "image_tag=$IMAGE_TAG" >> "$GITHUB_OUTPUT"
