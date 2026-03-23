@@ -1,0 +1,22 @@
+{
+  "defaultMode": "acceptEdits",
+  "permissions": {
+    "allow": [
+      "Bash(* --version)",
+      "Bash(* --help *)",
+      "Bash(echo:*)",
+      "Bash(find:*)",
+      "Bash(gh:*)",
+      "Bash(git:*)",
+      "Bash(grep:*)",
+      "Bash(ls:*)",
+      "Bash(task:*)",
+      "Bash(wc:*)",
+      "Read(*)",
+      "WebFetch(domain:*)",
+      "mcp__figma__*",
+      "mcp__notion__*",
+      "mcp__serena__*"
+    ]
+  }
+}
