@@ -12,11 +12,7 @@ jobs:
       - uses: actions/checkout@v6
         with:
           fetch-depth: 0
-      - name: Setup Submodules
-        run: |
-          git config --global url."https://github.com/".insteadOf "git@github.com:"
-          git submodule update --init --recursive
-          git config --global --unset url."https://github.com/".insteadOf
+          submodules: true
       - uses: jdx/mise-action@v3
       - name: Test
         run: task test
