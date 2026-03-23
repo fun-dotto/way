@@ -20,6 +20,9 @@ jobs:
       - uses: actions/checkout@v6
       - id: set-env
         uses: fun-dotto/way/.github/actions/set-env@main
+        with:
+          ar_hostname: ${{ vars._AR_HOSTNAME }}
+          project_id: ${{ vars.PROJECT_ID }}
   build-and-push:
     runs-on: ubuntu-latest
     permissions:

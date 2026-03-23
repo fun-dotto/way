@@ -1,5 +1,12 @@
 name: Set Environment
 description: Set environment, service name, and image tag based on trigger context
+inputs:
+  ar_hostname:
+    description: Artifact Registry hostname
+    required: true
+  project_id:
+    description: GCP project ID
+    required: true
 outputs:
   environment:
     description: Target environment (e.g. stg, prod)
@@ -38,7 +45,7 @@ runs:
 
         export REPO_NAME=$(echo ${{ github.repository }} | awk -F '/' '{print $2}')
         export SERVICE_NAME=$REPO_NAME$SERVICE_NAME_SUFFIX
-        export IMAGE_TAG=${{ vars._AR_HOSTNAME }}/${{ vars.PROJECT_ID }}/github-actions/$REPO_NAME/$SERVICE_NAME:${{ github.sha }}
+        export IMAGE_TAG=${{ inputs.ar_hostname }}/${{ inputs.project_id }}/github-actions/$REPO_NAME/$SERVICE_NAME:${{ github.sha }}
 
         echo "Repository name: $REPO_NAME"
         echo "Service name: $SERVICE_NAME"
