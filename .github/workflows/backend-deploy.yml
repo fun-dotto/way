@@ -19,7 +19,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - id: set-env
-        uses: ./.github/actions/set-env
+        uses: fun-dotto/dotto-way/.github/actions/set-env@main
   build-and-push:
     runs-on: ubuntu-latest
     permissions:
