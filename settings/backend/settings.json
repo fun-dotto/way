@@ -14,9 +14,8 @@
       "Bash(wc:*)",
       "Read(*)",
       "WebFetch(domain:*)",
-      "mcp__figma__*",
-      "mcp__notion__*",
-      "mcp__serena__*"
+      "mcp__dotto-figma__*",
+      "mcp__dotto-notion__*"
     ]
   }
 }
