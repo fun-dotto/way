@@ -1,0 +1,22 @@
+{
+  "defaultMode": "acceptEdits",
+  "permissions": {
+    "allow": [
+      "Bash(* --version)",
+      "Bash(* --help *)",
+      "Bash(echo:*)",
+      "Bash(find:*)",
+      "Bash(gh:*)",
+      "Bash(git:*)",
+      "Bash(grep:*)",
+      "Bash(ls:*)",
+      "Bash(pnpm:*)",
+      "Bash(wc:*)",
+      "Read(*)",
+      "mcp__chrome-devtools__*",
+      "mcp__dotto-figma__*",
+      "mcp__dotto-notion__*",
+      "mcp__firebase-mcp-server__*"
+    ]
+  }
+}
