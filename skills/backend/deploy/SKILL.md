@@ -1,6 +1,10 @@
 ---
 name: deploy
 description: リポジトリと環境をカンマ区切りで指定し、GitHub Actions の workflow_dispatch でデプロイをトリガーする。
+license: MIT
+metadata:
+  author: Kanta Oikawa
+  version: "1.0"
 ---
 
 複数リポジトリ・複数環境へのデプロイを一括トリガーするスキル。
@@ -25,10 +29,10 @@ description: リポジトリと環境をカンマ区切りで指定し、GitHub 
 
 ## リポジトリとワークフロー名の対応
 
-| リポジトリ | ワークフロー名 |
-|---|---|
-| fun-dotto/dotto-admin-web | CD |
-| 上記以外 | Deploy |
+| リポジトリ                | ワークフロー名 |
+| ------------------------- | -------------- |
+| fun-dotto/dotto-admin-web | CD             |
+| 上記以外                  | Deploy         |
 
 ## 有効な環境名
 
@@ -64,10 +68,10 @@ gh workflow run <ワークフロー名> --repo <リポジトリ> -f environment_
 
 例:
 
-| リポジトリ | dev | stg | qa |
-|---|---|---|---|
-| fun-dotto/announcement-api | ok | ok | ok |
-| fun-dotto/user-api | ok | ok | failed |
+| リポジトリ                 | dev | stg | qa     |
+| -------------------------- | --- | --- | ------ |
+| fun-dotto/announcement-api | ok  | ok  | ok     |
+| fun-dotto/user-api         | ok  | ok  | failed |
 
 ## 禁止事項
 

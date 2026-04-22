@@ -1,6 +1,10 @@
 ---
 name: pr
 description: ベースブランチを明示または既定値(main)で決定し、ベースとの差分全体を根拠に日本語でPRタイトル/本文を作成する。PRテンプレートがあれば形式を継承し、自己アサイン付きのDraft PRを作成する。
+license: MIT
+metadata:
+  author: Kanta Oikawa
+  version: "1.0"
 ---
 
 PRを一貫した手順で作成するためのスキル。

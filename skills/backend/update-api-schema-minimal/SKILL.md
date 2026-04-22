@@ -1,6 +1,10 @@
 ---
 name: backend-update-api-schema-minimal
 description: APIスキーマ変更時に、ビルドを通すための最小修正だけを行うスキル。新規エンドポイントは handler で `return nil, fmt.Errorf("not implemented")` を返して StrictServerInterface の不足を埋める。ドメイン/リポジトリ実装は原則追加しない。既存エンドポイントは必要最小限のみ追従する。都度コミットが必要な場面で使う。
+license: MIT
+metadata:
+  author: Kanta Oikawa
+  version: "1.0"
 ---
 
 OpenAPI スキーマ変更に追従しつつ、ビルドを通すことだけを目的に最小変更で進める。

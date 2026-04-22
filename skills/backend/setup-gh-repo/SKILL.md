@@ -1,6 +1,11 @@
 ---
+name: setup-gh-repo
 description: Copy Rulesets, Environments, and Repository variables from fun-dotto/api-template to another repository
 argument-hint: <owner/repo>
+license: MIT
+metadata:
+  author: Kanta Oikawa
+  version: "1.0"
 ---
 
 Copy the Rulesets, Environments (with environment variables), and Actions Repository variables from `fun-dotto/api-template` to the target repository `$ARGUMENTS`.
